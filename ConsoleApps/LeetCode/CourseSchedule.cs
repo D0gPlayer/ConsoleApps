@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ConsoleApps.LeetCode
-{
+{ 
     //207. Course Schedule
     public partial class Solution
     {
