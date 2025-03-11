@@ -11,7 +11,6 @@ using Timer = System.Timers.Timer;
 
 namespace ConsoleApps.ProgressGame
 {
-    //Create progress bar that reflects task progress
     public class ProgressBar
     {
         const char _fill = '■';

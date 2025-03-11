@@ -5,19 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApps.LeetCode
+namespace ConsoleApps.Prototypes
 {
     public class AsyncQueueWorker
     {
         private readonly Queue<Task> _taskQueue;
         private readonly List<Task> _currentTasks;
-        private readonly object _lock = new object(); 
+        private readonly object _lock = new object();
         private readonly int _maxConcurrentTasks;
 
         public AsyncQueueWorker(int maxConcurrentTasks)
         {
             _maxConcurrentTasks = maxConcurrentTasks;
-            _taskQueue = new Queue<Task>(); 
+            _taskQueue = new Queue<Task>();
             _currentTasks = new List<Task>();
         }
 
@@ -26,14 +26,14 @@ namespace ConsoleApps.LeetCode
             while (_currentTasks.Count > 0)
             {
                 var completedTask = await Task.WhenAny(_currentTasks);
-                _currentTasks.Remove(completedTask); 
+                _currentTasks.Remove(completedTask);
 
                 // Process the next task from the queue if there's room for it
                 lock (_lock)
                 {
                     if (_taskQueue.Count > 0)
                     {
-                        var task = _taskQueue.Dequeue(); 
+                        var task = _taskQueue.Dequeue();
                         task.Start();
                         _currentTasks.Add(task);
                     }
