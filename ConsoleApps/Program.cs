@@ -1,8 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using ConsoleApps;
-using ConsoleApps.Beep;
 using ConsoleApps.MathGame;
 using ConsoleApps.ProgressGame;
-new ProgressBarGame().Start();
+using ConsoleApps.Prototypes;
+var analyticsService =  new MultiThreadedProcessingService();
+await analyticsService.StartProcessingData();
 Console.ReadKey();
 
